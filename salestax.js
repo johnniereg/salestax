@@ -24,18 +24,24 @@ var companySalesData = [
 
 function calculateSalesTax(salesData, taxRates) {
   var results = {};
-// add the company names to our results object
-  for (i = 0; i < salesData.length; i++) {
-    var companyName = salesData[i].name;
+  for (var i = 0; i < salesData.length; i++) {
+    var companies = salesData[i].name;
     var companySales = calcSales(salesData[i].sales);
-    if (results[companyName] === undefined) {
-      results[companyName] = {
+    var companyProvince = salesData[i].province;
+    var taxRate = salesTaxRates[companyProvince];
+    var taxes = calcTax(companySales, taxRate);
+    console.log(taxes);
+    if (results[companies] === undefined) {
+      results[companies] = {
         totalSales: companySales,
-        totalTaxes: "unknown"
+        totalTaxes: taxes
       };
+      // results[companies]["totalTaxes"] += taxes;
     }
-    else
-      results[companyName].totalSales += companySales;
+    else {
+      results[companies].totalSales += companySales;
+      results[companies].totalTaxes += taxes;
+    }
   }
   console.log(results);
 }
