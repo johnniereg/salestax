@@ -6,16 +6,19 @@ var salesTaxRates = {
 
 var companySalesData = [
 // an array filled with objects
+// companySalesData[0]
   {
-    name: "Telus",
-    province: "BC",
-    sales: [ 100, 200, 400 ]
+    name: "Telus", // companySalesData[0].name
+    province: "BC", // companySalesData[0].province
+    sales: [ 100, 200, 400 ] // companySalesData[0].sales
   },
+// companySalesData[1]
   {
     name: "Bombardier",
     province: "AB",
     sales: [ 80, 20, 10, 100, 90, 500 ]
   },
+// companySalesData[2]
   {
     name: "Telus",
     province: "SK",
@@ -30,7 +33,21 @@ function calculateSalesTax(salesData, taxRates) {
   // add the company names to our results object
   for (i = 0; i < salesData.length; i++) {
     var companyName = salesData[i].name;
-    expectedResults[companyName] = {}
+
+    console.log(companyName);
+
+    var companySales = calcSales(salesData[i].sales);
+
+    console.log(companySales);
+
+
+
+    expectedResults[companyName] = {
+      totalSales: companySales,
+      totalTaxes: "unknown"
+    };
+
+
 
   }
 
@@ -51,7 +68,7 @@ function calculateSalesTax(salesData, taxRates) {
 // companySalesData[2]; --> Telus SK
 
 
-function calculateTotalSales (arrayOfSales) {
+function calcSales (arrayOfSales) {
   var salesCounter = 0;
   for (var i = 0; i < arrayOfSales.length; i++) {
     salesCounter += arrayOfSales[i];
@@ -60,7 +77,7 @@ function calculateTotalSales (arrayOfSales) {
 }
 
 
-function calculateTax (totalSales, salesTaxRate) {
+function calcTax (totalSales, salesTaxRate) {
   return totalSales * salesTaxRate;
 }
 
