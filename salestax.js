@@ -24,13 +24,14 @@ var companySalesData = [
 ];
 
 function calculateSalesTax(salesData, taxRates) {
+
   var expectedResults = {};
 
   // add the company names to our results object
   for (i = 0; i < salesData.length; i++) {
     var companyName = salesData[i].name;
-    expectedResults[companyName] = {};
-    // expectedResults["salesData[i]"] = {};
+    expectedResults[companyName] = {}
+
   }
 
   console.log(expectedResults);
@@ -50,14 +51,19 @@ function calculateSalesTax(salesData, taxRates) {
 // companySalesData[2]; --> Telus SK
 
 
-// function calculateTotalSales () {
-//   for ()
+function calculateTotalSales (arrayOfSales) {
+  var salesCounter = 0;
+  for (var i = 0; i < arrayOfSales.length; i++) {
+    salesCounter += arrayOfSales[i];
+  }
+  return salesCounter;
+}
 
-// }
 
-// function calculateTax () {
+function calculateTax (totalSales, salesTaxRate) {
+  return totalSales * salesTaxRate;
+}
 
-// }
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
 
