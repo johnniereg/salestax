@@ -6,9 +6,9 @@ var salesTaxRates = {
 
 var companySalesData = [
   {
-    name: "Telus", // companySalesData[0].name
-    province: "BC", // companySalesData[0].province
-    sales: [ 100, 200, 400 ] // companySalesData[0].sales
+    name: "Telus",
+    province: "BC",
+    sales: [ 100, 200, 400 ]
   },
   {
     name: "Bombardier",
@@ -30,33 +30,21 @@ function calculateSalesTax(salesData, taxRates) {
     var companyProvince = salesData[i].province;
     var taxRate = salesTaxRates[companyProvince];
     var taxes = calcTax(companySales, taxRate);
-    console.log(taxes);
+    // adds object if it isn't declared
     if (results[companies] === undefined) {
       results[companies] = {
         totalSales: companySales,
         totalTaxes: taxes
       };
-      // results[companies]["totalTaxes"] += taxes;
     }
+    // updates already declared objects
     else {
       results[companies].totalSales += companySales;
       results[companies].totalTaxes += taxes;
     }
   }
-  console.log(results);
+  return results;
 }
-
-// access parts of each item in array of objects
-// can access with . notation or [""] notation
-// console.log(companySalesData[0].name);
-// console.log(companySalesData[0]["province"]);
-// console.log(companySalesData[0]["sales"]);
-
-//access the objects in this array like this
-// companySalesData[0]; --> Telus BC
-// companySalesData[1]; --> Bombardier AB
-// companySalesData[2]; --> Telus SK
-
 
 function calcSales (arrayOfSales) {
   var salesCounter = 0;
@@ -66,15 +54,14 @@ function calcSales (arrayOfSales) {
   return salesCounter;
 }
 
-
 function calcTax (totalSales, salesTaxRate) {
   return totalSales * salesTaxRate;
 }
 
-
 var results = calculateSalesTax(companySalesData, salesTaxRates);
-// console.log(results)
 
+// run to test
+// console.log(results);
 
 //  Expected Results:
 // {
